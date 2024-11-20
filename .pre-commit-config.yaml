@@ -1,0 +1,26 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        files: \.py$
+
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.7.4
+    hooks:
+      - id: ruff
+        args: ["--exclude", "venv,migrations"]
+
+  - repo: local
+    hooks:
+      - id: pip-freeze
+        name: pip freeze
+        entry: pip freeze > requirements.txt
+        language: system
+        types: [python]
+        files: \.py$
